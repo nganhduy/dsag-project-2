@@ -1,4 +1,4 @@
-class DoubleNode:
+class double_node:
     def __init__(self, value):
         self.value = value
         self.prev = None
@@ -6,35 +6,31 @@ class DoubleNode:
 
     def __repr__(self):
         return f"Node({self.value})"
-
-
-class DoubleLinkedList:
+class double_linked_list:
     def __init__(self):
-        self.head = DoubleNode(None)
-        self.tail = DoubleNode(None)
+        self.head = double_node(None)
+        self.tail = double_node(None)
         self.head.prev, self.head.next = None, self.tail
         self.tail.prev, self.tail.next = self.head, None
         self.num_of_nodes = 0  
     
     def append(self, value):
-        doubleNode = DoubleNode(value)
+        doubleNode = double_node(value)
         prev_to_tail = self.tail.prev
         self.tail.prev = doubleNode
         doubleNode.next = self.tail
         doubleNode.prev = prev_to_tail
         prev_to_tail.next = doubleNode
-        
         self.num_of_nodes += 1
         return doubleNode        
 
     def prepend(self, value):
-        node = DoubleNode(value)
+        node = double_node(value)
         next_to_head = self.head.next
         self.head.next = node
         node.prev = self.head
         node.next = next_to_head
         next_to_head.prev = node
-        
         self.num_of_nodes += 1
         return node
 
@@ -61,13 +57,11 @@ class DoubleLinkedList:
         s += f" Tail"
 
         return s
-
-
 class LRU_Cache(object):
     def __init__(self, capacity = 10):
         # Initialize class variables
         self.map = dict()
-        self.storage = DoubleLinkedList()
+        self.storage = double_linked_list()
         self.capacity = capacity
 
     def get(self, key):
@@ -113,37 +107,35 @@ our_cache = LRU_Cache(5)
 value = our_cache.get(6)     # returns -1
 print(value)                
 
-our_cache.set(1, 1);
-our_cache.set(2, 2);
-our_cache.set(3, 3);
-our_cache.set(4, 4);
+our_cache.set(1, 1)
+our_cache.set(2, 2)
+our_cache.set(3, 3)
+our_cache.set(4, 4)
 
-# get the same value 5 times to check that we don't pop other values
-value = our_cache.get(1)     # returns 1
+value = our_cache.get(1)      # returns 4
 print(value)
-value = our_cache.get(1)     # returns 1
+value = our_cache.get(1)      # returns 1
 print(value)
-value = our_cache.get(1)     # returns 1
+value = our_cache.get(1)      # returns 1
 print(value)
-value = our_cache.get(1)     # returns 1
+value = our_cache.get(1)      # returns 1
 print(value)
-value = our_cache.get(1)     # returns 1
+value = our_cache.get(1)      # returns 1
 print(value)
 
-value = our_cache.get(2)     # returns 2
+value = our_cache.get(2)      # returns 2
 print(value)
-value = our_cache.get(9)     # returns -1 because 9 is not present in the cache
+value = our_cache.get(9)      # returns -1 because 9 is not present in the cache
 print(value)
 
 our_cache.set(5, 5)
 our_cache.set(6, 6)
-
-value = our_cache.get(3)     # returns -1 because the cache reached it's capacity and 3 was the least recently used entry
+value = our_cache.get(3)      # returns -1 because the cache reached it's capacity and 1 was the least recently used entry
 print(value)
 
-our_cache.set(5, 8)          # check that we replace the value in case the key is already there
-value = our_cache.get(5)     # returns 8
+our_cache.set(2, 10)          # check that we replace the value in case the key is already there
+value = our_cache.get(2)      # returns 10
 print(value)
 
-value = our_cache.get(1)     # returns 1 (check that previous get didn't pop the least recent but only replaced)
+value = our_cache.get(1)      # returns 1 (check that previous get didn't pop the least recent but only replaced)
 print(value)

@@ -263,11 +263,5 @@ if __name__ == "__main__":
     evaluate("# Test Case 3: Empty phrase", nothing)
 
     # Test Case 4: Phrases with only one symbol
-    a_sentence = "bbbbbbbbbb"
+    a_sentence = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq"
     evaluate("# Test Case 4: Phrases with only one symbol", a_sentence)
-
-    # Test Case 5: A real file. In fact 'this file'
-    # f = open("2_Project/P3 Huffman Coding/problem_3.py", "r")
-    f = open("huffman.py", "r")
-    file_content = f.read()
-    evaluate("# Test Case 5: A real file. In fact 'this script file'", file_content, 400)

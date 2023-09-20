@@ -74,16 +74,16 @@ sub_child.add_user(sub_child_user)
 child.add_group(sub_child)
 parent.add_group(child)
 
-# Test 1
+# Test Case 1
 print(is_user_in_group("sub_child_user", parent))  #  True
 
-# Test 2
+# Test Case 2
 print(is_user_in_group("sub_child", parent))       #  False
 
-# Test 3
-parent = Group("empty_parent")                    
+# Test Case 3
+parent = None
 print(is_user_in_group("sub_child_user", parent))  #  False
 
-# Test 4
-parent = None
+# Test Case 4
+parent = Group("empty_parent")                    
 print(is_user_in_group("sub_child_user", parent))  #  False

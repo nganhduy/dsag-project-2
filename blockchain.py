@@ -24,10 +24,10 @@ class Block:
         return sha.hexdigest()
 
     def __repr__(self):
-        repr_str  = 'block hash: {}'.format(self.hash)
-        repr_str += '\nprevious hash: {}'.format(self.previous_hash)
-        repr_str += '\ntimestamp: {}'.format(self.timestamp)
-        repr_str += '\nblock data: {}'.format(self.data)
+        repr_str  = 'block hash: {}\n'.format(self.hash)
+        repr_str += 'previous hash: {}\n'.format(self.previous_hash)
+        repr_str += 'timestamp: {}\n'.format(self.timestamp)
+        repr_str += 'block data: {}\n'.format(self.data)
         return repr_str
 
 class Blockchain:
@@ -62,8 +62,8 @@ class Blockchain:
     
     def _build_genesis_block(self):
         index = 0
-        timestamp = strftime("%H:%M %m/%d/%Y", gmtime())
-        data = "genesis"
+        timestamp = strftime('%H:%M %m/%d/%Y', gmtime())
+        data = 'genesis'
         prev_hash = 0
         return Block(timestamp, data, index, prev_hash)
     
@@ -74,7 +74,7 @@ class Blockchain:
     def __str__(self):
         indent = 7
         current_node = self.head
-        s = ""
+        s = ''
         while current_node is not None:
             s += str(current_node.value)
             if current_node.next is not None:
@@ -86,13 +86,13 @@ class Blockchain:
 # Tests
 chain = Blockchain()
 
-# Test 1: expected size 1. Genesis block is there
-print("Test 1")
+# Test Case 1: expected size 1. Genesis block is there
+print("Test Case 1")
 print(chain)
 print(f"Chain size: {chain.get_size()}")
 
-# Test 2: expected size 4. 3 transaction bocks are there
-print("Test 2")
+# Test Case 2: expected size 4. 3 transaction bocks are there
+print("Test Case 2")
 block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),
                         "transaction 1",
                         chain.last_block.index + 1,
@@ -114,8 +114,8 @@ chain.add(block)
 print(chain)
 print("Chain size: ", chain.get_size())
 
-#Test 3: Expected: size 4. Block with "Transaction 4" wasn't added due to prev hash mismatch
-print("Test 3")
+#Test Case 3: Expected: size 4. Block with "Transaction 4" wasn't added due to prev hash mismatch
+print("Test Case 3")
 block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),
                         "transaction 4",
                         chain.last_block.index + 1,
@@ -125,7 +125,6 @@ chain.add(block)
 print(chain)
 print("Chain size: ", chain.get_size())
 
-#Test 4: Expected: block with "Transaction 3"
-print("Test 4")
+#Test Case 4: Expected: block with "Transaction 3"
+print("Test Case 4")
 print(chain.get(3))
-
