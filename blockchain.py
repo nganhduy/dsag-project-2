@@ -37,7 +37,7 @@ class Blockchain:
         self.size = 1
 
     def add(self, block):
-        if block.previous_hash != self.last_block.previous_hash:
+        if block.previous_hash != self.last_block.hash:
             return
 
         node = Node(block)
@@ -62,8 +62,8 @@ class Blockchain:
     
     def _build_genesis_block(self):
         index = 0
-        timestamp = strftime('%H:%M %m/%d/%Y', gmtime())
-        data = 'genesis'
+        timestamp = strftime("%H:%M %m/%d/%Y", gmtime())
+        data = "genesis"
         prev_hash = 0
         return Block(timestamp, data, index, prev_hash)
     
@@ -74,7 +74,7 @@ class Blockchain:
     def __str__(self):
         indent = 7
         current_node = self.head
-        s = ''
+        s = ""
         while current_node is not None:
             s += str(current_node.value)
             if current_node.next is not None:
@@ -90,25 +90,21 @@ chain = Blockchain()
 print("Test Case 1")
 print(chain)
 print(f"Chain size: {chain.get_size()}")
-
 # Test Case 2: expected size 4. 3 transaction bocks are there
 print("Test Case 2")
-block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),
-                        "transaction 1",
-                        chain.last_block.index + 1,
-                        chain.last_block.previous_hash)
+block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),"transaction 1", chain.last_block.index + 1, chain.last_block.hash)
 chain.add(block)
 
 block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),
                         "transaction 2",
                         chain.last_block.index + 1,
-                        chain.last_block.previous_hash)
+                        chain.last_block.hash)
 chain.add(block)
 
 block = Block(strftime("%H:%M %m/%d/%Y", gmtime()),
                         "transaction 3",
                         chain.last_block.index + 1,
-                        chain.last_block.previous_hash)
+                        chain.last_block.hash)
 chain.add(block)
 
 print(chain)

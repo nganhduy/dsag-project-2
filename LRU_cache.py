@@ -112,30 +112,43 @@ our_cache.set(2, 2)
 our_cache.set(3, 3)
 our_cache.set(4, 4)
 
-value = our_cache.get(1)      # returns 4
+# Test case 2: get the same value 5 times
+
+value = our_cache.get(4)      # returns 1
 print(value)
-value = our_cache.get(1)      # returns 1
+value = our_cache.get(4)      # returns 1
 print(value)
-value = our_cache.get(1)      # returns 1
+value = our_cache.get(4)      # returns 1
 print(value)
-value = our_cache.get(1)      # returns 1
+value = our_cache.get(4)      # returns 1
 print(value)
-value = our_cache.get(1)      # returns 1
+value = our_cache.get(4)      # returns 1
 print(value)
+
+# Test case 3
 
 value = our_cache.get(2)      # returns 2
 print(value)
+
+# Test case 4
+
 value = our_cache.get(9)      # returns -1 because 9 is not present in the cache
 print(value)
+
+# Test case 5
 
 our_cache.set(5, 5)
 our_cache.set(6, 6)
 value = our_cache.get(3)      # returns -1 because the cache reached it's capacity and 1 was the least recently used entry
 print(value)
 
+# Test case 6
+
 our_cache.set(2, 10)          # check that we replace the value in case the key is already there
 value = our_cache.get(2)      # returns 10
 print(value)
 
-value = our_cache.get(1)      # returns 1 (check that previous get didn't pop the least recent but only replaced)
+# Test case 7
+
+value = our_cache.get(4)      # returns 4 (check that previous get didn't pop the least recent but only replaced)
 print(value)
